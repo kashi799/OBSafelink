@@ -1,0 +1,9 @@
+<script>
+
+ZSE.safelink("http://your-safelink.com/go?url=")
+  .except(['zeros.co.id'])
+  .delay(1)
+  .repeat(5, 60)
+  .run();
+
+</script>
