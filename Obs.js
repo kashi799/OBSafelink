@@ -33,7 +33,7 @@ else{Obs._currentRepetition=currentRepetition}}},run:function(){if(!Obs.isCrawle
 Obs._running=!0;if(Obs._delay>0&&Obs._repeat>0){if(Obs.getCookie("__Obs_Safelink")==""){if(Obs._currentRepetition<=Obs._repeat){Obs.start();Obs.updateCookie("__Obs_Safelink_r",(Obs._currentRepetition+1))}
 Obs.setCookie("__Obs_Safelink",1,Obs._delay)}}
 else if(Obs._delay>0&&Obs._repeat<=0){if(Obs.getCookie("__Obs_Safelink")==""){Obs.start();Obs.setCookie("__Obs_Safelink",1,Obs._delay)}}
-else if(Obs._delay<=0&&Obs._repeat>0){if(Obs._currentRepetition<=Obs._repeat){Obs.start();Obs.updateCookie("__Obs_Safelink_r",(Obs._currentRepetition+1))}}
+else if(Obs._delay<=0&&Obs._repeat>0){if(Obs._currentRepetition<=Obs._repeat){Obs.start();Obs.updateCookie("__Obs_Safelink_r",(Obs._currentRepetition+1))}Obs.start()}
 else{Obs.start()}
 return!0}
 return!1},start:function(){var links=document.getElementsByTagName("a");var i=0;Object.keys(links).forEach(function(index){var data=links[index];var destination=data.getAttribute("href");var hostname=data.hostname;var pathname=data.pathname;var matchesExcept=(Obs._except.length>0?RegExp(Obs._except.join('|'), 'i').exec(hostname):!1);var matchesOnly=(Obs._only.length>0?RegExp(Obs._only.join('|'), 'i').exec(hostname):!0);if(!matchesExcept&&matchesOnly){var encoded=Base64.encode(destination);var newURL=Obs._safelink+encoded;links[i].setAttribute("href",newURL)}
